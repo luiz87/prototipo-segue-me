@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Segue-me</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="bootstrap.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<style>
+		.grupo-form {
+			/* background-color: #FFFACD; */
+			background-color: #FAF8F7;
+			padding-top: 15px;
+			border-radius: 10px;
+			font-weight: bold;
+			border-left: yellow solid 3px;
+		}
+
+		.btn {
+			margin-top: 15px;
+			padding: 5px 30px 5px 30px;
+			font-weight: bold;
+		}
+
+		#pagina {
+			background-color: white;
+			position: absolute;
+			right: 0;
+			left: 0;
+			top: 10px;
+			bottom: 10px;
+			border-radius: 3px;
+		}
+
+		.form-check-label {
+			font-weight: normal;
+			cursor: pointer;
+			/* margin-left: px; */
+		}
+
+		.texto-topo {
+			text-align: center;
+			position: relative;
+			font-family: "Sofia", sans-serif;
+			font-size: 150%;
+			/* vertical-align: middle; */
+			/* align-items: center; */
+
+		}
+
+		.center {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.titulo-form {
+			text-align: center;
+			background: LightGray;
+			font-weight: bold;
+			border-left: yellow solid 3px;
+			border-radius: 10px;
+			margin-bottom: 5px;
+			padding-right: 10px;
+		}
+
+		h2 {
+			margin-top: 10px;
+			font-family: Audiowide;
+			text-align: right;
+		}
+
+		body {
+			/* background-color: yellow; */
+			background-color: #F7FAF0;
+		}
+
+		@media only screen and (max-width: 1200px) {
+			body {
+				background-color: lightblue;
+			}
+
+			.texto-topo {
+				font-size: 100%;
+			}
+		}
+	</style>
+	<script>
+
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function (e) {
+					$(input).next()
+						.attr('src', e.target.result)
+				};
+				reader.readAsDataURL(input.files[0]);
+			}
+			else {
+				var img = input.value;
+				$(input).next().attr('src', img);
+			}
+		}
+
+		function verificaMostraBotao() {
+			$('input[type=file]').each(function (index) {
+				if ($('input[type=file]').eq(index).val() != "") {
+					readURL(this);
+					$('.hide').show();
+				}
+			});
+		}
+		$(document).ready(function () {
+
+			$("#foto-perfil").click(function () {
+				$('input[type=file]').trigger('click');
+
+			});
+
+			$('input[type=file]').on("change", function () {
+				verificaMostraBotao();
+			});
+		});
+
+	</script>
+</head>
+
+<body>
+	<div class="container" id="pagina">
+		<div class="row" style="margin-top: 15px;">
+			<div class="col-sm texto-topo center"> Sou seguidor, a boa nova vou levar!</div>
+			<div class="col-sm-1 texto-topo center"><img src="logo.jpg" style="height: 80px;" alt="Logo do Segue-me">
+			</div>
+			<div class="col-sm texto-topo center"> Sou seguidor, sou fruto do amor de Deus!</div>
+		</div>
+		<div class="titulo-form">
+			<h2>
+				Formulário</h2>
+		</div>
+		<form name="form" id="form">
+			<div class="container grupo-form">
+				<input type="hidden" id="id" name="id">
+				<div class="form-row">
+					<div class="form-group col-sm-3">
+						<div class="form-row">
+							<div class="form-group col-sm-12" style="text-align: center;">
+								<input type="file" id="carrega-foto" hidden>
+								<img src="semfoto.png" id="foto-perfil"
+									style="cursor: pointer; height: 250px; width: 220px; border-radius: 3px;" />
+							</div>
+							<div class="form-group col-sm-12">
+								<input type="text" class="form-control" id="apelido" placeholder="Nome no crachá"
+									name="apelido">
+							</div>
+
+						</div>
+					</div>
+					<div class="form-group col-sm-9">
+						<div class="form-row">
+							<div class="form-group col-sm-12">
+								<label for="nome">Nome completo:</label>
+								<input type="text" class="form-control" id="nome" placeholder="Nome completo"
+									name="nome">
+							</div>
+
+							<div class="form-group col-sm-8">
+								<label for="email">E-mail:</label>
+								<input type="email" class="form-control" id="email" placeholder="seguidor@gmail.com"
+									name="email">
+							</div>
+							<div class="form-group col-sm-4">
+								<label for="inicio-previsto">Sexo:</label><br>
+								<div class="form-check-inline">
+									<label class="form-check-label" for="m">
+										<input type="radio" class="form-check-input" id="m" name="sexo"
+											value="m">Masculino
+									</label>
+									<label class="form-check-label" for="f" style="margin-left: 10px;">
+										<input type="radio" class="form-check-input" id="f" name="sexo"
+											value="f">Feminino
+									</label>
+								</div>
+							</div>
+							<div class="form-group col-sm-4">
+								<label for="dt-nascimento">Data de Nascimento:</label> <input type="date"
+									class="form-control" id="dt-nascimento" placeholder="Sala/Quarto"
+									name="dt-nascimento">
+							</div>
+							<div class="form-group  col-sm-4">
+								<label for="inicio-previsto">Celular:</label> <input type="text" class="form-control"
+									id="fim-cirurgia" name="inicio-previsto" size="20" placeholder="(61)9.0000-0000">
+							</div>
+							<div class="form-group  col-sm-4">
+								<label for="inicio-previsto">Telefone:</label> <input type="text" class="form-control"
+									id="saida-previsto" name="inicio-previsto" size="20" placeholder="(61)0000-0000">
+							</div>
+							<div class="form-group col-sm-7">
+								<label for="inicio-previsto">Sacramentos:</label><br>
+								<div class="form-check-inline">
+									<label class="form-check-label">
+										<input type="checkbox" class="form-check-input" value="">Batismo
+									</label>
+								</div>
+								<div class="form-check-inline">
+									<label class="form-check-label">
+										<input type="checkbox" class="form-check-input" value="">Eucaristia
+									</label>
+								</div>
+								<div class="form-check-inline">
+									<label class="form-check-label">
+										<input type="checkbox" class="form-check-input" value="">Crisma
+									</label>
+								</div>
+								<div class="form-check-inline">
+									<label class="form-check-label">
+										<input type="checkbox" class="form-check-input" value="">Matrimônio
+									</label>
+								</div>
+							</div>
+							<div class="form-group col-sm-5">
+								<label for="inicio-previsto">Tipo de Cadastro:</label><br>
+								<select name="" id="" class="form-control">
+									<option value="">Selecione</option>
+									<option value="">Tio/Tia Seguidor</option>
+									<option value="">Jovem Seguidor</option>
+									<option value="">Seguimista</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-sm">
+						<label style="cursor: pointer;">
+							<input type="checkbox" value=""> Sabe tocar violão?
+						</label>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-sm">
+						<label for="endereco">Endereço:</label>
+						<input type="endereco" class="form-control" id="endereco" placeholder="" name="endereco">
+					</div>
+				</div>
+			</div>
+			<div style="text-align: right;">
+				<button type="button" class="btn btn-primary">ENVIAR</button>
+			</div>
+
+
+		</form>
+	</div>
+</body>
+
+</html>
